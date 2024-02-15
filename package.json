@@ -1,0 +1,26 @@
+{
+  "name": "lit-actions-in-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lit-protocol/constants": "^3.1.4",
+    "@lit-protocol/contracts-sdk": "3.1.4",
+    "@lit-protocol/lit-auth-client": "^3.1.4",
+    "@lit-protocol/lit-node-client": "^3.0.32",
+    "@lit-protocol/lit-node-client-nodejs": "3.1.4",
+    "dotenv": "^16.4.4",
+    "ethers": "^5.7.1",
+    "express": "^4.18.2",
+    "lit-js-sdk": "^1.3.4",
+    "nodemon": "^3.0.3",
+    "siwe": "^2.1.4",
+    "ssl-root-cas": "^1.3.1"
+  }
+}
