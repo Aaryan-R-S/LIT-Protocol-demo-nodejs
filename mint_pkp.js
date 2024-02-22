@@ -4,10 +4,10 @@ const { AuthMethodType } = require("@lit-protocol/constants");
 const ethers = require("ethers");
 const dotenv = require("dotenv");
 dotenv.config();
-("use strict");
-const https = require("https");
-const { create } = require("ssl-root-cas/latest");
-https.globalAgent.options.ca = create();
+
+// const https = require("https");
+// const { create } = require("ssl-root-cas/latest");
+// https.globalAgent.options.ca = create();
 
 const siwe = require('siwe');
 const {LitAuthClient} = require('@lit-protocol/lit-auth-client')

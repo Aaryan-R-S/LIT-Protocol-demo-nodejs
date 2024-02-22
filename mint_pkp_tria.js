@@ -14,7 +14,7 @@ const mintPKP = async () => {
     const litNodeClient = new LitNodeClientNodeJs({
         alertWhenUnauthorized: false,
         litNetwork: "cayenne",
-        debug: false,
+        debug: true,
     });
     await litNodeClient.connect();
     try {
@@ -28,17 +28,6 @@ const mintPKP = async () => {
         ]
         const permittedAuthMethodPubkeys = ['0x', '0x'];
         const permittedAuthMethodScopes = [[1], [1]]
-
-        console.log("ok1")
-        const mockTransaction = await contractClient.pkpPermissionsContract.write.populateTransaction.addPermittedAuthMethod(
-            permittedAuthMethodTypes,
-            permittedAuthMethodIds,
-            []
-        );
-        console.log("ok2")
-        const gas = await contractClient.signer.estimateGas(mockTransaction);
-        console.log("ok3")
-
         const mintTx = await contractClient.pkpHelperContract.write.mintNextAndAddAuthMethods(
             keyType,
             permittedAuthMethodTypes,
@@ -47,12 +36,28 @@ const mintPKP = async () => {
             permittedAuthMethodScopes,
             true,
             true,
-            { value: mintCost, gasPrice: ethers.utils.parseUnits("0.001", "gwei"), gasLimit: gas }
+            { value: mintCost, gasPrice: ethers.utils.parseUnits("0.001", "gwei"), gasLimit: 2000000 }
         );
         const mintTxReceipt = await mintTx.wait();
 
         const tokenId = mintTxReceipt.events[0].topics[1]
         console.log({ tokenId })
+
+        let scopes = await contractClient.pkpPermissionsContract.read.getPermittedAuthMethodScopes(
+          tokenId,
+          permittedAuthMethodTypes[0],
+          permittedAuthMethodIds[0],
+          3
+        );
+        console.log(scopes);
+        scopes = await contractClient.pkpPermissionsContract.read.getPermittedAuthMethodScopes(
+          tokenId,
+          permittedAuthMethodTypes[1],
+          permittedAuthMethodIds[1],
+          3
+        );
+        console.log(scopes);
+
     } catch (err) {
         console.log(err);
     }
