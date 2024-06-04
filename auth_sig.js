@@ -1,13 +1,16 @@
 const LitJsSdk = require("@lit-protocol/lit-node-client");
 const ethers = require("ethers");
 const siwe = require("siwe");
+const dotenv = require("dotenv");
+dotenv.config();
 
 async function main() {
     // Initialize LitNodeClient
     const litNodeClient = new LitJsSdk.LitNodeClientNodeJs({
         alertWhenUnauthorized: false,
         litNetwork: "cayenne",
-        checkNodeAttestation: true,
+        checkNodeAttestation: false,
+        debug: false,
     });
     await litNodeClient.connect();
 

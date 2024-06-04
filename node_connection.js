@@ -1,4 +1,4 @@
-const LitJsSdk = require("@lit-protocol/lit-node-client");
+const LitJsSdk = require("@lit-protocol/lit-node-client-nodejs");
 const express = require('express');
 
 const app = express();
